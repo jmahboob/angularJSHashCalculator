@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en" ng-app="hashApp">
+<head>
+	<meta charset="UTF-8">
+
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>
+
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>	
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js"></script>	
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha256.js"></script>	
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha512.js"></script>	
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>	
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/ripemd160.js"></script>	
+	<script>
+		var hashApp = angular.module('hashApp', []);
+		hashApp.controller('hashController', function ($scope, $http) {
+
+			$scope.hashMD5 = function(val) { return CryptoJS.MD5(val) };
+			$scope.hashSHA1 = function(val) { return CryptoJS.SHA1(val) };
+			$scope.hashSHA256 = function(val) { return CryptoJS.SHA256(val) };
+			$scope.hashSHA512 = function(val) { return CryptoJS.SHA512(val) };
+			$scope.hashSHA3 = function(val) { return CryptoJS.SHA3(val) };
+			$scope.hashRIPEMD = function(val) { return CryptoJS.RIPEMD160(val) };
+		});
+	</script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+
+<style>
+	* {
+		font-family: Georgia, Serif;
+	}
+	.right {
+		position: absolute;
+		right: 0px;
+		width: 300px;
+	}
+
+	.left {
+		position: absolute;
+		left: 0px;
+		width: 300px;
+	}
+	.banner {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 70px;
+		margin: 0px auto;
+		padding: 0px auto;
+		text-align: center;
+	}
+	.content {
+		position: absolute;
+		top: 100px;
+		width: 960px;
+		left: 0;
+		right: 0;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.center {
+		margin: auto;
+	}
+</style>
+
+<body>
+
+<!-- Code Goes Here -->
+<div ng-controller="hashController">
+
+	<div class="banner"><h2>Hash Calculator</h2></div>
+
+	<div class="content">
+		<center>
+			<input ng-model=textToHash placeholder="String to Hash Goes Here"/>
+		<hr>
+			<p>
+				<span class='label label-default'>MD5</span><br>
+				<span ng-bind="hashMD5(textToHash)"></span>
+			</p>
+		<hr>
+			<p>
+				<span class='label label-default'>SHA-1</span><br>
+				<span ng-bind="hashSHA1(textToHash)"></span>
+			<p>
+		<hr>
+			<p>
+				<span class='label label-default'>SHA-256</span><br>
+				<span ng-bind="hashSHA256(textToHash)"></span>
+			</p>
+		<hr>
+			<p>
+				<span class='label label-default'>SHA-512</span><br>
+				<span ng-bind="hashSHA512(textToHash)"></span>
+			</p>
+		<hr>
+			<p>
+				<span class='label label-default'>SHA-3</span><br>
+				<span ng-bind="hashSHA3(textToHash)"></span>
+			</p>
+		<hr>
+			<p>
+				<span class='label label-default'>RIPEMD-160</span><br>
+				<span ng-bind="hashRIPEMD(textToHash)"></span>
+			</p>
+		</center>
+	</div>
+
+</body>
+
+</html>
